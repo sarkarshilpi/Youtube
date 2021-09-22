@@ -1,0 +1,91 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer [style.width]="customToggle?80:200" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar>
+            <button *ngIf="(isHandset$ | async)" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <button *ngIf="!(isHandset$ | async)" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="customToggle=!customToggle">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <img *ngIf="customToggle" src="../../assets/images/youtube.png" alt="youtube logo">
+        </mat-toolbar>
+        <mat-nav-list>
+            <mat-card style="padding-top: 0;">
+                <div *ngFor="let menu of menuItems">
+                    <button mat-icon-button>
+                        <mat-icon>{{menu.icon}}</mat-icon> 
+                        <span *ngIf="customToggle">{{menu.name}}</span>
+                    </button>
+                </div>
+            </mat-card>
+            <mat-card>
+                <h3 *ngIf="customToggle"><b>SUBSCRIPTIONS</b></h3>
+                <div *ngFor="let item of subscriptions">
+                    <button mat-icon-button>
+                        <mat-icon><span class="material-icons">
+                                {{item.icon}}
+                            </span></mat-icon>
+                            <span *ngIf="customToggle">{{item.name}}</span>
+                    </button>
+                </div>
+            </mat-card>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content [style.margin-left]="check((isHandset$ | async),customToggle)">
+        <mat-toolbar class="sticky">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <img *ngIf="!customToggle" src="../../assets/images/youtube.png" alt="youtube logo">
+            <div class="head1">
+                <span>
+                    <input type="text" name="search" [(ngModel)]="searchText" class="search-input" placeholder="Search">
+                    <button mat-raised-button class="search-button">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </span>
+                <span>
+                    <button mat-icon-button>
+                        <mat-icon>mic</mat-icon>
+                    </button>
+                </span>
+            </div>
+            <div class="head2">
+                <span>
+                    <button mat-icon-button>
+                        <mat-icon>video_call</mat-icon>
+                    </button>
+                </span>
+                <span>
+                    <button mat-icon-button>
+                        <mat-icon>apps</mat-icon>
+                    </button>
+                </span>
+                <span>
+                    <button mat-icon-button>
+                        <mat-icon>notifications</mat-icon>
+                    </button>
+                </span>
+                <span>
+                    <button mat-icon-button>
+                        <mat-icon>perm_identity</mat-icon>
+                    </button>
+                </span>
+            </div>
+        </mat-toolbar>
+
+        <div fxLayout="row wrap" fxLayoutGap="2px grid">
+            <div class="top-button" *ngFor="let item of button">
+                <button mat-raised-button class="top-button">{{item.name}}</button>
+            </div>
+        </div>
+
+        <div style="padding-left: 20px;padding-top: 20px;" fxLayout="row wrap" fxLayoutGap="20px">
+            <mat-card *ngFor="let n of cardvalues | filter:searchText" fxFlex.lg="23%" fxFlex.md="31%" fxFlex.sm="45%" fxFlex.xs="100%" class="example-card">
+                <img mat-card-image src="{{n.source}}" class="img">
+                <p class="title">{{n.title}}</p>
+                <p>{{n.body}}</p>
+            </mat-card>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

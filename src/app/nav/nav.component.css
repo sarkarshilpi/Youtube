@@ -1,0 +1,75 @@
+.sidenav-container {
+    height: 100%;
+}
+
+
+/* .sidenav {
+    width: 200px;
+} */
+
+.sidenav .mat-toolbar {
+    background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.search-input {
+    height: 28px;
+    width: 400px;
+}
+
+.search-button {
+    height: 38px;
+    width: 10px;
+    background-color: #fafafa;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border: 1px solid lightgrey;
+    box-shadow: none;
+}
+
+.head1 {
+    margin-top: 0%;
+    margin-left: 10%;
+}
+
+.head2 {
+    margin-top: 0%;
+    margin-left: 30%;
+}
+
+.top-button {
+    margin-top: 1%;
+    border-radius: 20px;
+    /* background-color: lightgrey; */
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.img {
+    height: 230px;
+}
+
+.title {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 575px) {
+    #main {
+        display: block;
+    }
+}
+
+.example-card {
+    /* max-width: 250px; */
+    margin-bottom: 2%;
+}
+
+mat-card-title {
+    font-size: 0.9rem;
+}
